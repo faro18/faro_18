@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faro | Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #111;
+            color: white;
+            scroll-behavior: smooth;
+            height: 100%; /* Um den gesamten Bildschirm auszufüllen */
+            overflow-x: hidden; /* Verhindert horizontales Scrollen */
+        }
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Transparenter Hintergrund */
+            padding: 10px 20px;
+            z-index: 10;
+            display: flex;
+            justify-content: center; /* Elemente zentrieren */
+            align-items: center;
+        }
+        header nav {
+            display: flex;
+            align-items: center;
+            gap: 30px; /* Abstand zwischen den Links */
+        }
+        .logo-link {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            gap: 10px;
+        }
+        .logo-link img {
+            width: 50px;
+            height: auto;
+        }
+        .logo-link span {
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+        }
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        /* Hintergrundvideo für den gesamten Body */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1; /* Video hinter allen anderen Inhalten */
+        }
+        .hero {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    position: relative; /* Position für das Logo und Text */
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Text und Logo in der Mitte */
+    gap: 30px; /* Abstand zwischen Bild und Text */
+}
+
+.hero-logo {
+    position: absolute; /* Setze das Logo relativ zur Seite */
+    left: 350px; /* Verschiebe das Logo nach links (anpassen nach Bedarf) */
+    width: 200px; /* Logo Größe */
+    height: auto;
+}
+
+.hero-text {
+    text-align: center; /* Der Text bleibt mittig */
+}
+
+.hero h1 {
+    font-size: 64px;
+}
+
+.hero p {
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+
+/* Für den Fall, dass der Text immer noch mittig bleiben soll */
+.hero-text {
+    text-align: center;
+}
+
+.hero h1, .hero p {
+    margin: 0;
+}
+
+        .projects, .contact {
+            padding: 20px 20px;
+            text-align: center;
+        }
+        .projects h2, .contact h2 {
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+        .project-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+      /* Projekt-Grid */
+/* Projekt-Grid */
+.project-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap; /* Falls der Bildschirm zu klein ist, wird der Inhalt umgebrochen */
+}
+
+/* Projektkarte */
+.project-card {
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s;
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 500px; /* Behalte die Höhe bei */
+}
+
+.project-card img {
+    margin-bottom: 10px; /* Fügt mehr Platz unter dem Bild hinzu */
+}
+
+.project-card .project-button {
+    margin-top: auto; /* Der Button wird an den unteren Rand verschoben */
+}
+
+
+/* Titel der Projektkarte */
+.project-card h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: white;
+}
+
+/* Beschreibung unter dem Titel */
+.project-card p {
+    font-size: 16px;
+    color: #bbb;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Sorgt dafür, dass der Textbereich den verfügbaren Platz ausfüllt */
+}
+
+/* Projektbild */
+.project-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 20px; /* Abstand zwischen Bild und Button */
+}
+
+/* Button */
+.project-button {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.project-button:hover {
+    background-color: #777;
+}
+
+
+        .contact-form {
+            background: #222;
+            padding: 40px;
+            border-radius: 8px;
+            max-width: 600px;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        .contact-form button {
+            padding: 15px 30px;
+            background: #555;
+            color: rgb(255, 255, 255);
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .contact-form button:hover {
+            background: #777;
+        }
+        .success-message {
+            color: #0f0;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background: #111;
+            color: #bbb;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="#hero" class="logo-link">
+            <img src="https://cdn.discordapp.com/attachments/1315344705147506689/1316894461279731793/252135235-removebg-preview.png?ex=675d5dca&is=675c0c4a&hm=3fe5670d6103cecf91f9ba158b8050a0835ab2fe9faaa0f19ca1c4c7a360f93e&" alt="Logo">
+            <span>Faro | Ofiizial Website</span>
+        </a>
+        <a href="#hero">Homepage</a>
+        <a href="Meine-Designs.html">Meine Designs</a>
+        <a href="#reviews">Bewertungen</a>
+        <a href="#partners">Partner</a>
+    </nav>
+</header>
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Willkommen bei Faro</title>
+    <style>
+        /* Schriftart einbinden */
+        @font-face {
+            font-family: 'Winter Lemon';
+            src: url('Winter-Lemon.ttf') format('truetype');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #111;
+            color: white;
+            scroll-behavior: smooth;
+        }
+
+        .hero {
+            height: 90vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            flex-direction: column;
+        }
+
+        /* Winter Lemon für alles im Hero-Bereich anwenden */
+        .hero h1, .hero p {
+            font-family: 'Winter Lemon', sans-serif;  /* Schriftart Winter Lemon */
+            color: white; /* Textfarbe auf Weiß setzen, da Winter Lemon Standardtextfarbe ändert */
+        }
+
+        .hero h1 {
+            font-size: 64px;
+        }
+
+        /* W und F werden auch mit der Winter Lemon Schriftart dargestellt und grau gefärbt */
+        .hero h1 span {
+            color: gray; /* Farbe für das W und F */
+        }
+
+        .hero p {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        /* Grauer Strich unter dem Hero-Bereich */
+        hr {
+            width: 80%;
+            border: 0;
+            border-top: 3px solid gray;
+            margin-top: 40px; /* Vergrößert den Abstand zwischen Hero und Strich */
+        }
+
+        /* Abschnitt für Faro Design und Partner Links */
+/* Links Abschnitt */
+.links {
+    text-align: center;
+    position: relative;  /* Ermöglicht es, das Element relativ zur normalen Position zu verschieben */
+    top: -300px;  /* Verschiebt den Bereich nach oben */
+    padding: 60px 0;   /* Beibehaltung des Abstands nach oben und unten */
+}
+        .links a {
+            color: white;
+            font-family: 'Winter Lemon', sans-serif;
+            font-size: 36px; /* Größere Schrift für die Links */
+            text-decoration: none;
+            padding: 15px 30px;
+            margin: 0 30px;
+            border-radius: 5px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: gray;
+        }
+
+        .projects {
+    margin-top: -300px; /* Verschiebt den Abschnitt weiter nach oben */
+    padding: 1px 20px;
+    text-align: center;
+}
+
+        .projects h2 {
+            font-size: 40px;
+            margin-bottom: 30px;
+        }
+
+        .project-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .project-card {
+            background: #222;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+/* Für WebKit-Browser wie Chrome, Edge und Safari */
+::-webkit-scrollbar {
+    width: 20px; /* Breite der Scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #2a2a2a; /* Hintergrund der Scroll-Leiste */
+    border-radius: 10px; /* Abgerundete Kanten */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #ffffff; /* Farbe des Scrollbar-Griffs (weiß) */
+    border-radius: 10px; /* Abgerundete Kanten */
+    border: 4px solid #2a2a2a; /* Abstand zwischen Griff und Leiste */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #f0f0f0; /* Hellgrau als Hover-Effekt */
+}
+
+/* Optional: Für Firefox (weiße Scrollbar mit mehr Breite) */
+* {
+    scrollbar-width: thick; /* Breite Scrollbar */
+    scrollbar-color: #ffffff #2a2a2a; /* Farbe: Griff (weiß) | Hintergrund */
+}
+
+    </style>
+</head>
+<body>
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <!-- Bild hier einfügen -->
+            <img src="logo2.png" alt="Logo" class="hero-logo">
+            <div class="hero-text">
+                <h1><span style="font-family: 'Winter Lemon'; color: gray;">W</span>illkommen bei <span style="font-family: 'Winter Lemon'; color: gray;">F</span>aro</h1>
+                <p>Leidenschaftlicher Designer.</p>
+                <p>Auf dem Weg, Coding zu meistern.</p>
+            </div>
+        </div>
+        <hr>
+    </section>
+     
+
+    <!-- Faro Design und Partner Links -->
+    <section class="links">
+        <a href="#faro-design">Faro Design</a>
+        <a href="#partner">Partner</a>
+    </section>
+
+    <!-- Projekte Abschnitt -->
+    <section class="projects" id="projects">
+        <h2>Meine Projekte</h2>
+        <div class="project-grid">
+            <!-- Projekt 1: Faro -->
+            <div class="project-card">
+                <h3>Faro | Design / Bots</h3>
+                <p>Wir bieten innovative Designs und maßgeschneiderte Bots für jedes Projekt.</p>
+                <img src="Faro.png" alt="Faro Design" class="project-image">
+                <button class="project-button" onclick="window.location.href='https://deine-seite.com';">Erfahre mehr</button>
+            </div>
+            
+            <!-- Projekt 2 -->
+            <div class="project-card">
+                <h3>Rieju City</h3>
+                <p>Ein FiveM Roleplay Server. Midcore, Viele Scripts und Super Performace!</p>
+                <img src="rieju.png" alt="Rieju Projekt" class="project-image">
+                <button class="project-button" onclick="window.location.href='https://deine-seite.com';">Erfahre mehr</button>
+            </div>
+    
+            <!-- Projekt 3 -->
+            <div class="project-card">
+                <h3>Codezz Bot</h3>
+                <p>Ein Bot, der viele Funktionen bietet. Und das komplett Kostenlos!</p>
+                <img src="codezz.png" alt="Codezz Projekt" class="project-image">
+                <button class="project-button" onclick="window.location.href='https://deine-seite.com';">Erfahre mehr</button>
+            </div>
+        </div>
+    </section>    
+
+<!-- Kontakt Abschnitt -->
+<section class="contact" id="contact">
+    <h2>Kontakt</h2>
+    <form action="https://formsubmit.co/farodesign@web.de" method="POST" class="contact-form" id="contactForm">
+        <input type="text" name="name" placeholder="Ihr Name" required>
+        <input type="email" name="email" placeholder="Ihre E-Mail" required>
+        <textarea name="message" rows="5" placeholder="Ihre Nachricht" required></textarea>
+        <button type="submit">Absenden</button>
+    </form>
+    <p class="success-message" id="successMessage" style="display: none;">Vielen Dank für Ihre Nachricht!</p>
+</section>
+
+<!-- Footer -->
+<footer>
+    <p>© 2024 Faro. Alle Rechte vorbehalten.</p>
+</footer>
+
+<!-- Hintergrundvideo -->
+<video autoplay muted loop id="bg-video">
+    <source src="dein-video.mp4" type="video/mp4">
+    Ihr Browser unterstützt dieses Video nicht.
+</video>
+</body>
+</html>
